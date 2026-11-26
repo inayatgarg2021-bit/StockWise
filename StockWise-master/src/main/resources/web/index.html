@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>StockWise | Dashboard</title>
+
+    <link rel="stylesheet"
+          href="style.css">
+
+    <link rel="stylesheet"
+          href="css/dashboard.css">
+
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <!-- BRAND -->
+        <div class="brand">
+            <div class="brand-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7.5 12 3l9 4.5-9 4.5-9-4.5Z"/>
+                    <path d="M3 7.5V17l9 4 9-4V7.5"/>
+                    <path d="M12 12v9"/>
+                    <path d="m7.5 5.25 9 4.5"/>
+                </svg>
+            </div>
+
+            <div class="brand-text">
+                <h2>StockWise</h2>
+                <span>INVENTORY INTELLIGENCE</span>
+            </div>
+        </div>
+
+        <!-- NAVIGATION -->
+        <div class="nav-section">
+
+            <p class="nav-heading">WORKSPACE</p>
+
+            <a href="/index.html" class="nav-link active">
+            <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+                    <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+                    <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+                </svg>
+            </span>
+                <span class="nav-label">Dashboard</span>
+            </a>
+
+            <a href="/pages/products.html" class="nav-link">
+            <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m3 7 9-4 9 4-9 4-9-4Z"/>
+                    <path d="M3 7v10l9 4 9-4V7"/>
+                    <path d="M12 11v10"/>
+                </svg>
+            </span>
+                <span class="nav-label">Products</span>
+            </a>
+
+            <a href="/pages/sales.html" class="nav-link">
+            <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="21" r="1"/>
+                    <circle cx="20" cy="21" r="1"/>
+                    <path d="M1 1h4l2.7 13.5a2 2 0 0 0 2 1.5h9.8a2 2 0 0 0 2-1.6L23 7H6"/>
+                </svg>
+            </span>
+                <span class="nav-label">Sales</span>
+            </a>
+
+            <a href="/pages/suppliers.html" class="nav-link">
+            <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 7h11v10H3z"/>
+                    <path d="M14 10h4l3 3v4h-7"/>
+                    <circle cx="7.5" cy="18" r="1.8"/>
+                    <circle cx="17.5" cy="18" r="1.8"/>
+                </svg>
+            </span>
+                <span class="nav-label">Suppliers</span>
+            </a>
+
+            <a href="/pages/forecasting.html" class="nav-link">
+            <span class="nav-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v18h18"/>
+                    <path d="m7 14 4-4 4 3 5-7"/>
+                    <path d="M17 6h3v3"/>
+                </svg>
+            </span>
+                <span class="nav-label">Demand Forecast</span>
+            </a>
+
+        </div>
+
+        <!-- SIDEBAR FOOTER -->
+        <div class="sidebar-bottom">
+
+            <div class="admin-profile">
+                <div class="avatar">A</div>
+
+                <div class="admin-info">
+                    <strong>Administrator</strong>
+                    <small>Inventory Manager</small>
+                </div>
+
+                <div class="profile-status"></div>
+            </div>
+
+            <button id="logoutButton" class="logout-button">
+            <span class="logout-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 17l5-5-5-5"/>
+                    <path d="M15 12H3"/>
+                    <path d="M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7"/>
+                </svg>
+            </span>
+                <span>Sign out</span>
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="breadcrumb">
+                    Overview / Dashboard
+                </p>
+
+                <h1>Dashboard</h1>
+
+                <p class="page-subtitle">
+                    Monitor your inventory and business performance.
+                </p>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="date-display"
+                     id="currentDate">
+
+                </div>
+
+                <button class="refresh-button"
+                        onclick="loadDashboard()">
+
+                    ↻ Refresh
+
+                </button>
+
+            </div>
+
+        </header>
+
+        <!-- KPI CARDS -->
+
+        <section class="dashboard-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    📦
+                </div>
+
+                <div class="stat-content">
+
+                    <p>Total Products</p>
+
+                    <h2 id="totalProducts">
+                        --
+                    </h2>
+
+                    <small>
+                        Active SKUs
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-icon purple">
+                    🚚
+                </div>
+
+                <div class="stat-content">
+
+                    <p>Total Suppliers</p>
+
+                    <h2 id="totalSuppliers">
+                        --
+                    </h2>
+
+                    <small>
+                        Supply partners
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    ⚠️
+                </div>
+
+                <div class="stat-content">
+
+                    <p>Low Stock</p>
+
+                    <h2 id="lowStock">
+                        --
+                    </h2>
+
+                    <small>
+                        Needs attention
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-icon red">
+                    ❌
+                </div>
+
+                <div class="stat-content">
+
+                    <p>Out of Stock</p>
+
+                    <h2 id="outOfStock">
+                        --
+                    </h2>
+
+                    <small>
+                        Products unavailable
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- SECOND ROW -->
+
+        <section class="dashboard-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    💰
+                </div>
+
+                <div class="stat-content">
+
+                    <p>Inventory Value</p>
+
+                    <h2 id="inventoryValue">
+                        ₹0
+                    </h2>
+
+                    <small>
+                        Based on purchase cost
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-icon teal">
+                    📅
+                </div>
+
+                <div class="stat-content">
+
+                    <p>Today's Sales</p>
+
+                    <h2 id="salesToday">
+                        ₹0
+                    </h2>
+
+                    <small>
+                        Daily revenue
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-icon pink">
+                    📊
+                </div>
+
+                <div class="stat-content">
+
+                    <p>Monthly Sales</p>
+
+                    <h2 id="salesMonth">
+                        ₹0
+                    </h2>
+
+                    <small>
+                        Current month
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-icon cyan">
+                    🏪
+                </div>
+
+                <div class="stat-content">
+
+                    <p>Total Stock Units</p>
+
+                    <h2 id="totalUnits">
+                        --
+                    </h2>
+
+                    <small>
+                        Across all products
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- QUICK ACTIONS -->
+
+        <section class="quick-actions">
+
+            <div class="section-heading">
+
+                <h2>Quick Actions</h2>
+
+                <p>
+                    Frequently used operations
+                </p>
+
+            </div>
+
+            <div class="action-grid">
+
+                <a href="/pages/products.html"
+                   class="action-card">
+
+                    <div class="action-icon">
+                        ➕
+                    </div>
+
+                    <div>
+
+                        <h3>Manage Products</h3>
+
+                        <p>
+                            Add or update inventory
+                        </p>
+
+                    </div>
+
+                </a>
+
+                <a href="/pages/sales.html"
+                   class="action-card">
+
+                    <div class="action-icon">
+                        🛒
+                    </div>
+
+                    <div>
+
+                        <h3>Record Sale</h3>
+
+                        <p>
+                            Create a new transaction
+                        </p>
+
+                    </div>
+
+                </a>
+
+                <a href="/pages/suppliers.html"
+                   class="action-card">
+
+                    <div class="action-icon">
+                        🚚
+                    </div>
+
+                    <div>
+
+                        <h3>Manage Suppliers</h3>
+
+                        <p>
+                            View supply partners
+                        </p>
+
+                    </div>
+
+                </a>
+
+                <a href="/pages/forecasting.html"
+                   class="action-card">
+
+                    <div class="action-icon">
+                        📈
+                    </div>
+
+                    <div>
+
+                        <h3>Demand Forecast</h3>
+
+                        <p>
+                            Predict future demand
+                        </p>
+
+                    </div>
+
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- INVENTORY HEALTH -->
+
+        <!-- INVENTORY HEALTH -->
+
+        <section class="health-section">
+
+            <div class="section-heading">
+
+                <h2>Inventory Health</h2>
+
+                <p>
+                    Current stock distribution
+                </p>
+
+            </div>
+
+            <div class="health-card">
+
+                <!-- HEALTHY STOCK -->
+
+                <div class="health-row">
+
+                    <div class="health-label">
+
+                        <span class="health-dot healthy"></span>
+
+                        <span>Healthy Stock</span>
+
+                    </div>
+
+                    <strong id="healthyStock">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <!-- LOW STOCK -->
+
+                <div class="health-row">
+
+                    <div class="health-label">
+
+                        <span class="health-dot warning"></span>
+
+                        <span>Low Stock</span>
+
+                    </div>
+
+                    <strong id="lowStockHealth">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <!-- CRITICAL STOCK -->
+
+                <div class="health-row">
+
+                    <div class="health-label">
+
+                        <span class="health-dot danger"></span>
+
+                        <span>Critical Stock</span>
+
+                    </div>
+
+                    <strong id="criticalStockHealth">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <!-- OUT OF STOCK -->
+
+                <div class="health-row">
+
+                    <div class="health-label">
+
+                        <span class="health-dot danger"></span>
+
+                        <span>Out of Stock</span>
+
+                    </div>
+
+                    <strong id="outStockHealth">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+</div>
+
+<script src="js/guard.js"></script>
+<script src="js/api.js"></script>
+<script src="app.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/logout.js"></script>
+
+</body>
+</html>

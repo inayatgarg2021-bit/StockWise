@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SmartStock AI | Sales</title>
+
+    <link rel="stylesheet"
+          href="../style.css">
+
+    <link rel="stylesheet"
+          href="../css/forms.css">
+
+    <link rel="stylesheet"
+          href="../css/products.css">
+
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">📦</div>
+
+            <div>
+                <h2>SmartStock</h2>
+                <span>AI Inventory System</span>
+            </div>
+
+        </div>
+
+        <div class="nav-section">
+
+            <p class="nav-heading">MAIN MENU</p>
+
+            <a href="/index.html"
+               class="nav-link">
+
+                <span>📊</span>
+                Dashboard
+
+            </a>
+
+            <a href="/pages/products.html"
+               class="nav-link">
+
+                <span>📦</span>
+                Products
+
+            </a>
+
+            <a href="/pages/sales.html"
+               class="nav-link active">
+
+                <span>🛒</span>
+                Sales
+
+            </a>
+
+            <a href="/pages/suppliers.html"
+               class="nav-link">
+
+                <span>🚚</span>
+                Suppliers
+
+            </a>
+
+            <a href="/pages/forecasting.html"
+               class="nav-link">
+
+                <span>📈</span>
+                Demand Forecast
+
+            </a>
+
+        </div>
+
+        <div class="sidebar-bottom">
+
+            <div class="admin-profile">
+
+                <div class="avatar">A</div>
+
+                <div class="admin-info">
+
+                    <strong>Administrator</strong>
+
+                    <small>Inventory Manager</small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="breadcrumb">
+                    Operations / Sales
+                </p>
+
+                <h1>Sales Management</h1>
+
+                <p class="page-subtitle">
+                    Record transactions and manage sales.
+                </p>
+
+            </div>
+
+        </header>
+
+        <!-- CREATE SALE -->
+
+        <section class="card sale-card">
+
+            <div class="section-heading">
+
+                <h2>New Sale</h2>
+
+                <p>
+                    Add products to your transaction.
+                </p>
+
+            </div>
+
+            <div class="sale-input-grid">
+
+                <div class="form-group">
+
+                    <label>Product</label>
+
+                    <select
+                            id="saleProduct"
+                            class="form-control"
+                    >
+
+                        <option value="">
+                            Select product
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Quantity</label>
+
+                    <input
+                            type="number"
+                            id="saleQuantity"
+                            class="form-control"
+                            min="1"
+                            value="1"
+                    >
+
+                </div>
+
+                <button
+                        class="btn-primary sale-add-button"
+                        onclick="addToCart()">
+
+                    + Add to Cart
+
+                </button>
+
+            </div>
+
+            <!-- CART -->
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                    <tr>
+
+                        <th>Product</th>
+
+                        <th>Price</th>
+
+                        <th>Quantity</th>
+
+                        <th>Subtotal</th>
+
+                        <th>Action</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody id="cartTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="sale-summary">
+
+                <div class="form-group">
+
+                    <label>Payment Method</label>
+
+                    <select
+                            id="paymentMethod"
+                            class="form-control"
+                    >
+
+                        <option value="CASH">
+                            Cash
+                        </option>
+
+                        <option value="UPI">
+                            UPI
+                        </option>
+
+                        <option value="CARD">
+                            Card
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="total-box">
+
+                    <span>Total Amount</span>
+
+                    <strong id="cartTotal">
+                        ₹0.00
+                    </strong>
+
+                </div>
+
+                <button
+                        class="btn-primary"
+                        onclick="completeSale()">
+
+                    Complete Sale
+
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- SALES HISTORY -->
+
+        <section class="card sales-history">
+
+            <div class="products-toolbar">
+
+                <div>
+
+                    <h2>Sales History</h2>
+
+                    <p>
+                        <span id="salesCount">0</span>
+                        transactions
+                    </p>
+
+                </div>
+
+                <button
+                        class="refresh-button"
+                        onclick="loadSalesHistory()">
+
+                    ↻ Refresh
+
+                </button>
+
+            </div>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                    <tr>
+
+                        <th>Sale ID</th>
+
+                        <th>Date</th>
+
+                        <th>Items</th>
+
+                        <th>Total</th>
+
+                        <th>Payment</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody id="salesTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="../js/api.js"></script>
+
+<script src="../app.js"></script>
+
+<script src="../js/sales.js"></script>
+
+<script src="/js/guard.js"></script>
+
+</body>
+
+</html>

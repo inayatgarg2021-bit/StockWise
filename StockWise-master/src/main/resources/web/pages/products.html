@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SmartStock AI | Products</title>
+
+    <link rel="stylesheet"
+          href="../style.css">
+
+    <link rel="stylesheet"
+          href="../css/products.css">
+
+    <link rel="stylesheet"
+          href="../css/forms.css">
+
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">📦</div>
+
+            <div>
+                <h2>SmartStock</h2>
+                <span>AI Inventory System</span>
+            </div>
+
+        </div>
+
+        <div class="nav-section">
+
+            <p class="nav-heading">MAIN MENU</p>
+
+            <a href="/index.html"
+               class="nav-link">
+
+                <span>📊</span>
+                Dashboard
+
+            </a>
+
+            <a href="/pages/products.html"
+               class="nav-link active">
+
+                <span>📦</span>
+                Products
+
+            </a>
+
+            <a href="/pages/sales.html"
+               class="nav-link">
+
+                <span>🛒</span>
+                Sales
+
+            </a>
+
+            <a href="/pages/suppliers.html"
+               class="nav-link">
+
+                <span>🚚</span>
+                Suppliers
+
+            </a>
+
+            <a href="/pages/forecasting.html"
+               class="nav-link">
+
+                <span>📈</span>
+                Demand Forecast
+
+            </a>
+
+        </div>
+
+        <div class="sidebar-bottom">
+
+            <div class="admin-profile">
+
+                <div class="avatar">A</div>
+
+                <div class="admin-info">
+
+                    <strong>Administrator</strong>
+
+                    <small>Inventory Manager</small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="breadcrumb">
+                    Inventory / Products
+                </p>
+
+                <h1>Product Management</h1>
+
+                <p class="page-subtitle">
+                    Manage your inventory catalog.
+                </p>
+
+            </div>
+
+            <button class="btn-primary"
+                    onclick="openProductModal()">
+
+                + Add Product
+
+            </button>
+
+        </header>
+
+        <!-- SEARCH -->
+
+        <section class="card">
+
+            <div class="products-toolbar">
+
+                <div>
+
+                    <h2>Product Catalog</h2>
+
+                    <p>
+                        <span id="productCount">0</span>
+                        products found
+                    </p>
+
+                </div>
+
+                <input
+                        type="text"
+                        id="searchProducts"
+                        class="form-control search-box"
+                        placeholder="Search SKU or product..."
+                >
+
+            </div>
+
+            <!-- TABLE -->
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                    <tr>
+
+                        <th>SKU</th>
+
+                        <th>Product</th>
+
+                        <th>Category</th>
+
+                        <th>Stock</th>
+
+                        <th>Purchase Price</th>
+
+                        <th>Selling Price</th>
+
+                        <th>Supplier</th>
+
+                        <th>Status</th>
+
+                        <th>Actions</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody id="productsTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- PRODUCT MODAL -->
+
+<div class="modal-overlay"
+     id="productModal">
+
+    <div class="modal">
+
+        <div class="modal-header">
+
+            <h2 id="modalTitle">
+                Add Product
+            </h2>
+
+            <button class="modal-close"
+                    onclick="closeProductModal()">
+
+                ×
+
+            </button>
+
+        </div>
+
+        <form id="productForm">
+
+            <input type="hidden"
+                   id="productId">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>SKU *</label>
+
+                    <input
+                            type="text"
+                            id="sku"
+                            class="form-control"
+                            required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Product Name *</label>
+
+                    <input
+                            type="text"
+                            id="productName"
+                            class="form-control"
+                            required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Category *</label>
+
+                    <select
+                            id="category"
+                            class="form-control"
+                            required
+                    >
+
+                        <option value="">
+                            Select Category
+                        </option>
+
+                        <option value="FOOD">
+                            Food
+                        </option>
+
+                        <option value="ELECTRONICS">
+                            Electronics
+                        </option>
+
+                        <option value="CLOTHING">
+                            Clothing
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Supplier *</label>
+
+                    <select
+                            id="supplierId"
+                            class="form-control"
+                            required
+                    >
+
+                        <option value="">
+                            Select Supplier
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Purchase Price *</label>
+
+                    <input
+                            type="number"
+                            id="purchasePrice"
+                            class="form-control"
+                            min="0"
+                            step="0.01"
+                            required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Selling Price *</label>
+
+                    <input
+                            type="number"
+                            id="sellingPrice"
+                            class="form-control"
+                            min="0"
+                            step="0.01"
+                            required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Current Stock *</label>
+
+                    <input
+                            type="number"
+                            id="currentStock"
+                            class="form-control"
+                            min="0"
+                            required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Safety Stock *</label>
+
+                    <input
+                            type="number"
+                            id="safetyStock"
+                            class="form-control"
+                            min="0"
+                            required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Coverage Days *</label>
+
+                    <input
+                            type="number"
+                            id="coverageDays"
+                            class="form-control"
+                            min="1"
+                            required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label>Lead Time (Days)</label>
+
+                    <input
+                            type="number"
+                            id="leadTime"
+                            class="form-control"
+                            min="0"
+                            value="7"
+                    >
+
+                </div>
+
+                <!-- FOOD -->
+
+                <div class="form-group"
+                     id="expiryGroup"
+                     style="display:none;">
+
+                    <label>Expiry Date</label>
+
+                    <input
+                            type="date"
+                            id="expiryDate"
+                            class="form-control"
+                    >
+
+                </div>
+
+                <!-- ELECTRONICS -->
+
+                <div class="form-group"
+                     id="warrantyGroup"
+                     style="display:none;">
+
+                    <label>Warranty Months</label>
+
+                    <input
+                            type="number"
+                            id="warrantyMonths"
+                            class="form-control"
+                            min="0"
+                            value="12"
+                    >
+
+                </div>
+
+            </div>
+
+            <div class="modal-actions">
+
+                <button type="button"
+                        class="btn-secondary"
+                        onclick="closeProductModal()">
+
+                    Cancel
+
+                </button>
+
+                <button type="submit"
+                        class="btn-primary">
+
+                    Save Product
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="../js/api.js"></script>
+
+<script src="../app.js"></script>
+
+<script src="../js/products.js"></script>
+
+<script src="/js/guard.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>SmartStock AI | Demand Forecast</title>
+
+    <link rel="stylesheet"
+          href="../style.css">
+
+    <link rel="stylesheet"
+          href="../css/dashboard.css">
+
+    <link rel="stylesheet"
+          href="../css/products.css">
+
+</head>
+
+<body>
+
+<div class="app-layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">📦</div>
+
+            <div>
+                <h2>SmartStock</h2>
+                <span>AI Inventory System</span>
+            </div>
+
+        </div>
+
+        <div class="nav-section">
+
+            <p class="nav-heading">MAIN MENU</p>
+
+            <a href="/index.html"
+               class="nav-link">
+
+                <span>📊</span>
+                Dashboard
+
+            </a>
+
+            <a href="/pages/products.html"
+               class="nav-link">
+
+                <span>📦</span>
+                Products
+
+            </a>
+
+            <a href="/pages/sales.html"
+               class="nav-link">
+
+                <span>🛒</span>
+                Sales
+
+            </a>
+
+            <a href="/pages/suppliers.html"
+               class="nav-link">
+
+                <span>🚚</span>
+                Suppliers
+
+            </a>
+
+            <a href="/pages/forecasting.html"
+               class="nav-link active">
+
+                <span>📈</span>
+                Demand Forecast
+
+            </a>
+
+        </div>
+
+        <div class="sidebar-bottom">
+
+            <div class="admin-profile">
+
+                <div class="avatar">A</div>
+
+                <div class="admin-info">
+
+                    <strong>Administrator</strong>
+
+                    <small>Inventory Manager</small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+
+                <p class="breadcrumb">
+                    Intelligence / Forecast
+                </p>
+
+                <h1>Demand Forecasting</h1>
+
+                <p class="page-subtitle">
+                    Predict demand and optimize reorder decisions.
+                </p>
+
+            </div>
+
+        </header>
+
+        <!-- SIMULATION -->
+
+        <section class="card simulation-card">
+
+            <div class="simulation-header">
+
+                <div>
+
+                    <h2>What-If Demand Simulation</h2>
+
+                    <p>
+                        Simulate changes in customer demand.
+                    </p>
+
+                </div>
+
+                <div class="simulation-value">
+
+                    <strong id="multiplierValue">
+                        1.0x
+                    </strong>
+
+                    <span id="multiplierDescription">
+                        Normal demand
+                    </span>
+
+                </div>
+
+            </div>
+
+            <input
+                    type="range"
+                    id="demandSlider"
+                    min="0.5"
+                    max="2.5"
+                    step="0.1"
+                    value="1"
+            >
+
+            <div class="slider-labels">
+
+                <span>0.5x</span>
+
+                <span>Normal</span>
+
+                <span>2.5x</span>
+
+            </div>
+
+        </section>
+
+        <!-- FORECAST KPIs -->
+
+        <section class="dashboard-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    📦
+                </div>
+
+                <div class="stat-content">
+
+                    <p>Tracked Products</p>
+
+                    <h2 id="forecastTotal">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-icon red">
+                    🚨
+                </div>
+
+                <div class="stat-content">
+
+                    <p>Critical</p>
+
+                    <h2 id="forecastCritical">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    ⚠️
+                </div>
+
+                <div class="stat-content">
+
+                    <p>Low Stock</p>
+
+                    <h2 id="forecastLow">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    ✅
+                </div>
+
+                <div class="stat-content">
+
+                    <p>Healthy</p>
+
+                    <h2 id="forecastHealthy">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- FORECAST TABLE -->
+
+        <section class="card">
+
+            <div class="products-toolbar">
+
+                <div>
+
+                    <h2>Reorder Recommendations</h2>
+
+                    <p>
+                        Sorted by urgency
+                    </p>
+
+                </div>
+
+                <input
+                        type="text"
+                        id="forecastSearch"
+                        class="form-control search-box"
+                        placeholder="Search product or SKU..."
+                >
+
+            </div>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                    <tr>
+
+                        <th>SKU</th>
+
+                        <th>Product</th>
+
+                        <th>Stock</th>
+
+                        <th>Daily Demand</th>
+
+                        <th>Days Remaining</th>
+
+                        <th>Reorder Point</th>
+
+                        <th>Suggested Order</th>
+
+                        <th>Priority</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody id="forecastTable">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="../js/api.js"></script>
+
+<script src="../app.js"></script>
+
+<script src="../js/forecasting.js"></script>
+
+<script src="/js/guard.js"></script>
+
+</body>
+
+</html>

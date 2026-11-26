@@ -1,0 +1,262 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SmartStock AI | Login</title>
+
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+<div class="login-page">
+
+    <!-- LEFT BRAND PANEL -->
+    <section class="brand-panel">
+
+        <div class="brand-content">
+
+            <div class="brand-logo">
+                📦
+            </div>
+
+            <div class="brand-name">
+                SmartStock <span>AI</span>
+            </div>
+
+            <p class="brand-tagline">
+                Intelligent Inventory Management
+            </p>
+
+            <div class="brand-message">
+                <h2>
+                    Smarter inventory.<br>
+                    Better decisions.
+                </h2>
+
+                <p>
+                    Take control of your inventory with intelligent
+                    insights, real-time monitoring and predictive analytics.
+                </p>
+            </div>
+
+            <!-- FEATURE CARDS -->
+            <div class="feature-list">
+
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+
+                    <div>
+                        <strong>Inventory Analytics</strong>
+                        <span>Monitor your inventory performance</span>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">📈</div>
+
+                    <div>
+                        <strong>Demand Forecasting</strong>
+                        <span>Make smarter stocking decisions</span>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+
+                    <div>
+                        <strong>Real-time Insights</strong>
+                        <span>Stay ahead of stock shortages</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="brand-bottom">
+            © 2026 SmartStock AI
+            <span>Inventory Intelligence</span>
+        </div>
+
+    </section>
+
+
+    <!-- RIGHT LOGIN PANEL -->
+    <section class="login-panel">
+
+        <div class="login-wrapper">
+
+            <!-- LOGIN BRAND FOR MOBILE -->
+            <div class="mobile-brand">
+
+                <div class="brand-logo">
+                    📦
+                </div>
+
+                <div>
+                    <h1>SmartStock <span>AI</span></h1>
+                    <p>Intelligent Inventory Management</p>
+                </div>
+
+            </div>
+
+
+            <!-- LOGIN CARD -->
+            <div class="login-card">
+
+                <div class="login-header">
+
+                    <div class="login-icon">
+                        🔐
+                    </div>
+
+                    <div class="welcome-label">
+                        SECURE ACCESS
+                    </div>
+
+                    <h2 id="formTitle">
+                        Welcome Back
+                    </h2>
+
+                    <p id="formSubtitle">
+                        Sign in to access your inventory dashboard
+                    </p>
+
+                </div>
+
+
+                <!-- LOGIN FORM -->
+                <form id="loginForm">
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">✉</span>
+
+                            <input
+                                    type="email"
+                                    id="email"
+                                    placeholder="admin@smartstock.com"
+                                    required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button type="submit" class="login-button">
+
+                        <span>Send Verification Code</span>
+
+                        <span class="button-arrow">→</span>
+
+                    </button>
+
+                </form>
+
+
+                <!-- OTP FORM -->
+                <form id="otpForm" class="hidden">
+
+                    <div class="otp-message">
+
+                        We've generated a verification code for
+
+                        <strong id="userEmail"></strong>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="otp">
+                            6-Digit Verification Code
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">🔑</span>
+
+                            <input
+                                    type="text"
+                                    id="otp"
+                                    placeholder="Enter OTP"
+                                    maxlength="6"
+                                    inputmode="numeric"
+                                    required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button type="submit" class="login-button">
+
+                        <span>Verify & Login</span>
+
+                        <span class="button-arrow">→</span>
+
+                    </button>
+
+
+                    <button
+                            type="button"
+                            id="backButton"
+                            class="back-button">
+
+                        ← Change Email
+
+                    </button>
+
+                </form>
+
+
+                <!-- MESSAGE -->
+                <div id="message" class="message"></div>
+
+
+                <!-- SECURITY FOOTER -->
+                <div class="login-footer">
+
+                    <span class="security-icon">🛡️</span>
+
+                    <div>
+                        <strong>Secure authentication</strong>
+                        <span>Your access is protected</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="login-bottom">
+
+                © 2026 SmartStock AI
+
+                <span>Designed for smarter inventory management</span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script src="js/auth.js"></script>
+
+</body>
+</html>
